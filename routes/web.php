@@ -16,8 +16,13 @@ Route::get('/', function () {
 });
 //顯示我們所有任務的清單
 Route::get('/', function () {
-    return view('tasks');
+    $tasks = Task::orderBy('created_at', 'asc')->get();
+    //利用model Task由DB的tasks資料表取出資料
+    return view('tasks', [
+        'tasks' => $tasks
+    ]);       //將tasks資料表取出的資料傳遞給tasks視圖
 });
+
 
 // 增加新的任務
 Route::post('/task', function (Request $request) {
