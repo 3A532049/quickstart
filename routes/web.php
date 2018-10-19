@@ -32,6 +32,11 @@ Route::post('/task', function (Request $request) {
             ->withErrors($validator);
     }
     // 建立該任務...
+    $task = new Task;
+    $task->name = $request->name;
+    $task->save();
+    return redirect('/');
+
     //新增任務存入DB的程式碼 (see next page)
 
 });
